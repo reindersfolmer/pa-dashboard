@@ -22,7 +22,10 @@ David runt meerdere hotelbedrijven (Excite Hotels, Urban Residences, THP/IFHG). 
 
 ## Config en state (Dropbox)
 
-Dropbox is het geheugen van dit dashboard, omdat het ook bereikbaar is in geplande runs zonder desktop of Chrome.
+Er zijn twee opslagplekken met elk een eigen rol — niet mengen:
+
+- **Dropbox = machinegeheugen** (config, state, leerlog). Dropbox omdat de connector bestanden kan overschrijven (delete + create), wat state elke run nodig heeft; de Google Drive-connector kan alleen nieuwe bestanden aanmaken.
+- **Google Drive = leesbare documenten voor David** (weekreviews en andere stukken die hij wil terugvinden), in de Drive-map "PA Dashboard" (zoek op titel, parentId root; aanmaken als hij ontbreekt). Documenten zijn schrijf-één-keer, dus de Drive-beperking doet daar geen pijn.
 
 - `/PA Dashboard/config.json` — VIP-lijst (personen én organisatiedomeinen: iedereen binnen Davids eigen organisaties is VIP), GitHub repo + token, dashboardwachtwoord, voorkeuren. Alleen wijzigen als David daarom vraagt ("voeg X toe aan mijn VIP's").
 - `/PA Dashboard/state.json` — alles wat tussen runs onthouden moet worden:
@@ -73,7 +76,7 @@ Bouw de pagina op basis van `assets/template.html` (mobile-first, geen externe d
 4. **Beloofd aan anderen** — toezeggingen die Dávid aan derden heeft gedaan ("zal ff kijken", beloofde documenten) met wachtteller per item. Dit staat apart van de radar omdat het reputatie kost als het veroudert; panelreview 17/7. Alleen tonen als er toezeggingen open staan.
 5. **Radar** — langer lopende en bewust geparkeerde zaken (uitstel-teller en parkeer-reden zichtbaar)
 6. **Vragen van je PA** — alleen tonen als er iets is: onvindbare afrondingen, aannames die bevestiging vragen
-7. **Weekvoorstellen** — alleen in de week na een weekreview: de panelvoorstellen, kort
+7. **Weekvoorstellen** — de panelvoorstellen uit `/PA Dashboard/weekvoorstellen.json` (Dropbox), kort. Elke run die het dashboard herbouwt neemt ze opnieuw op — ze verdwijnen pas als de volgende weekreview ze vervangt of David zegt dat ze weg kunnen. (Zonder deze persistentie wist elke uur-run de voorstellen — dat is eerder misgegaan.)
 8. **Voet** — aantal verwerkte berichten per bron, link "ververs: vraag Claude"
 
 Versleutel en publiceer daarna volgens `references/publicatie.md`. Het webadres verandert nooit; David heeft het als app op zijn beginscherm.
