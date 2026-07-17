@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- Sjabloon voor het PA Dashboard. Vervang alle [PLACEHOLDER]-blokken door echte inhoud;
+     behoud de structuur en klassen. Eén bestand, geen externe dependencies. -->
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101418">
+<title>PA Dashboard — [DATUM]</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg:#f5f6f8; --card:#ffffff; --ink:#1a2027; --sub:#5b6673; --line:#e3e7ec;
+    --rood:#dc2626; --oranje:#d97706; --groen:#059669; --blauw:#2563eb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#101418; --card:#1a2027; --ink:#e8eaed; --sub:#9aa4af; --line:#2a323c; }
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; font-size:15px; line-height:1.45; }
+  .wrap { max-width:720px; margin:0 auto; padding:1rem 1rem 3rem; }
+  header h1 { font-size:1.25rem; margin:.4rem 0 .1rem; }
+  header .sub { color:var(--sub); font-size:.85rem; }
+  .chips { display:flex; flex-wrap:wrap; gap:.4rem; margin:.7rem 0 1.2rem; }
+  .chip { font-size:.72rem; padding:.18rem .55rem; border-radius:999px; border:1px solid var(--line);
+          background:var(--card); color:var(--sub); }
+  .chip.vers::before   { content:"● "; color:var(--groen); }
+  .chip.cache::before  { content:"● "; color:var(--oranje); }
+  .chip.uit::before    { content:"● "; color:var(--rood); }
+  h2 { font-size:.8rem; text-transform:uppercase; letter-spacing:.06em; color:var(--sub); margin:1.6rem 0 .6rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
+          padding:.85rem 1rem; margin-bottom:.6rem; }
+  .card.rood   { border-left:4px solid var(--rood); }
+  .card.oranje { border-left:4px solid var(--oranje); }
+  .card.grijs  { border-left:4px solid var(--line); }
+  .titel { font-weight:600; }
+  .meta  { font-size:.8rem; color:var(--sub); margin-top:.1rem; }
+  .waarom { font-size:.87rem; margin-top:.35rem; }
+  details { margin-top:.5rem; }
+  summary { cursor:pointer; font-size:.83rem; color:var(--blauw); font-weight:500; }
+  .voorwerk { font-size:.87rem; margin:.5rem 0 .2rem; padding:.7rem .8rem; border-radius:10px;
+              background:var(--bg); white-space:pre-wrap; }
+  .agenda .tijd { font-variant-numeric:tabular-nums; font-weight:600; margin-right:.5rem; }
+  .radar .meta { display:flex; justify-content:space-between; }
+  .acties { display:flex; gap:.5rem; margin-top:.6rem; }
+  .acties a { font-size:.78rem; text-decoration:none; color:var(--sub); border:1px solid var(--line);
+              border-radius:999px; padding:.22rem .7rem; background:var(--bg); }
+  footer { margin-top:2rem; font-size:.78rem; color:var(--sub); text-align:center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Goedemorgen David</h1><!-- pas de groet aan het dagdeel aan -->
+    <div class="sub">Bijgewerkt [DAG DATUM, HH:MM]</div>
+    <div class="chips">
+      <!-- één chip per bron; klasse = vers / cache / uit -->
+      <span class="chip vers">Excite mail</span>
+      <span class="chip vers">Excite agenda</span>
+      <span class="chip vers">Gmail</span>
+      <span class="chip cache">Urban · cache 09:12</span>
+      <span class="chip cache">WhatsApp · cache 09:12</span>
+      <span class="chip uit">Google agenda</span>
+    </div>
+  </header>
+
+  <h2>Prioriteiten</h2>
+  <!-- max 7 kaarten; klasse rood = nu doen, oranje = vandaag, grijs = kan morgen -->
+  <div class="card rood">
+    <div class="titel">[Onderwerp of actie]</div>
+    <div class="meta">[Bron] · [afzender] · [wacht X dagen / deadline]</div>
+    <div class="waarom">[Eén zin: waarom dit nu bovenaan staat]</div>
+    <details><summary>Concept-antwoord</summary>
+      <div class="voorwerk">[Verzendklaar concept in Davids stijl]</div>
+    </details>
+    <details><summary>Oplossingsrichtingen</summary>
+      <div class="voorwerk">[2–3 richtingen met voor/nadeel + advies]</div>
+    </details>
+    <div class="acties">
+      <!-- mailto naar Davids Gmail; onderwerp-conventie wordt door de volgende run verwerkt -->
+      <a href="mailto:reindersfolmer@gmail.com?subject=PA%20afgerond%3A%20[ITEM-ID]%20[TITEL]&body=Eventuele%20toelichting%3A">✓ afgerond</a>
+      <a href="mailto:reindersfolmer@gmail.com?subject=PA%20parkeer%3A%20[ITEM-ID]%20[TITEL]&body=Reden%20(optioneel)%3A">⏸ parkeer</a>
+    </div>
+  </div>
+
+  <h2>Vandaag &amp; morgen</h2>
+  <div class="card agenda">
+    <div><span class="tijd">[10:00]</span><span class="titel">[Afspraak]</span></div>
+    <div class="meta">[deelnemers · locatie · welke agenda]</div>
+    <details><summary>Briefing</summary>
+      <div class="voorwerk">[Context, relevante mails, wat David moet weten of beslissen]</div>
+    </details>
+  </div>
+
+  <h2>Radar</h2>
+  <!-- lopende + bewust geparkeerde zaken; uitstel-teller en parkeer-reden zichtbaar -->
+  <div class="card grijs radar">
+    <div class="titel">[Onderwerp]</div>
+    <div class="meta"><span>[bron · afzender]</span><span>[open sinds X dagen / geparkeerd: reden]</span></div>
+  </div>
+
+  <!-- Alleen tonen als er vragen zijn -->
+  <h2>Vragen van je PA</h2>
+  <div class="card oranje">
+    <div class="waarom">[Hoe is X afgelopen? Ik vind geen afronding in mail of WhatsApp.]</div>
+  </div>
+
+  <!-- Alleen tonen in de week na een weekreview -->
+  <h2>Weekvoorstellen</h2>
+  <div class="card grijs">
+    <div class="waarom">1. [Voorstel uit de panelreview, concreet en kort]</div>
+  </div>
+
+  <footer>
+    [N] mails Excite · [N] Gmail · [N] Urban · [N] WhatsApp-chats verwerkt<br>
+    Verversen of afvinken? Vraag het Claude in de Cowork-chat.
+  </footer>
+
+</div>
+</body>
+</html>
