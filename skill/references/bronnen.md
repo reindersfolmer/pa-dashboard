@@ -34,7 +34,7 @@ Werkwijze als Chrome wél bereikbaar is — maak per site een nieuw tabblad, en 
 
 - **Urban mail** — navigeer naar `https://outlook.office.com/mail/`. Als er een accountkeuze of login verschijnt: niet zelf inloggen; markeer de bron als "niet ingelogd" en meld het onderaan het dashboard. Lees anders de inbox-lijst (afzender, onderwerp, tijd) en open alleen berichten die er voor prioritering toe doen.
 - **Urban agenda** — `https://outlook.office.com/calendar/view/week`, lees vandaag + morgen.
-- **WhatsApp** — `https://web.whatsapp.com`. Lees de chatlijst: chats met ongelezen-badge en chats met activiteit vandaag. Open alleen die chats en haal de recente berichten op. Negeer groepsgebabbel zonder vraag of actie voor David; een bericht telt als het een vraag, verzoek, bedrag of afspraak bevat. Privécontext die niets met werk te maken heeft hoort niet op het dashboard, tenzij het een afspraak of actie is.
+- **WhatsApp** — `https://web.whatsapp.com`. Meldt de pagina "WhatsApp is geopend in een ander venster", klik dan op "Hier gebruiken" (Davids andere venster moet daarna herladen — dat weet hij). Lees de chatlijst: chats met ongelezen-badge en chats met activiteit vandaag. Open alleen die chats en haal de recente berichten op. Negeer groepsgebabbel zonder vraag of actie voor David; een bericht telt als het een vraag, verzoek, bedrag of afspraak bevat. Privécontext die niets met werk te maken heeft hoort niet op het dashboard, tenzij het een afspraak of actie is.
 - **Google-agenda** — `https://calendar.google.com`, dag/weekweergave, vandaag + morgen.
 
 Schrijf van elke gelezen Chrome-bron een compacte snapshot naar `state.json → cache` met timestamp, zodat de eerstvolgende geplande run iets heeft om op terug te vallen.
