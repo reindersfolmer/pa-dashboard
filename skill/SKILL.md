@@ -70,10 +70,11 @@ Bouw de pagina op basis van `assets/template.html` (mobile-first, geen externe d
 1. **Kop** — datum/tijd van deze run + bronstatuschips
 2. **Prioriteiten** — de gewogen lijst, rood/oranje/grijs, met "waarom nu", inklapbaar voorwerk en actieknoppen (✓ afgerond / ⏸ parkeer)
 3. **Vandaag & morgen** — agenda-items met briefing per afspraak
-4. **Radar** — langer lopende en bewust geparkeerde zaken (uitstel-teller en parkeer-reden zichtbaar)
-5. **Vragen van je PA** — alleen tonen als er iets is: onvindbare afrondingen, aannames die bevestiging vragen
-6. **Weekvoorstellen** — alleen in de week na een weekreview: de panelvoorstellen, kort
-7. **Voet** — aantal verwerkte berichten per bron, link "ververs: vraag Claude"
+4. **Beloofd aan anderen** — toezeggingen die Dávid aan derden heeft gedaan ("zal ff kijken", beloofde documenten) met wachtteller per item. Dit staat apart van de radar omdat het reputatie kost als het veroudert; panelreview 17/7. Alleen tonen als er toezeggingen open staan.
+5. **Radar** — langer lopende en bewust geparkeerde zaken (uitstel-teller en parkeer-reden zichtbaar)
+6. **Vragen van je PA** — alleen tonen als er iets is: onvindbare afrondingen, aannames die bevestiging vragen
+7. **Weekvoorstellen** — alleen in de week na een weekreview: de panelvoorstellen, kort
+8. **Voet** — aantal verwerkte berichten per bron, link "ververs: vraag Claude"
 
 Versleutel en publiceer daarna volgens `references/publicatie.md`. Het webadres verandert nooit; David heeft het als app op zijn beginscherm.
 
