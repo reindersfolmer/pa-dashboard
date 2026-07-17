@@ -46,6 +46,10 @@
   .acties { display:flex; gap:.5rem; margin-top:.6rem; }
   .acties a { font-size:.78rem; text-decoration:none; color:var(--sub); border:1px solid var(--line);
               border-radius:999px; padding:.22rem .7rem; background:var(--bg); }
+  .lokaal-stub { display:flex; justify-content:space-between; align-items:center; gap:.6rem;
+                 font-size:.8rem; color:var(--sub); }
+  .lokaal-stub a { color:var(--sub); text-decoration:underline; }
+  .card.lokaal-af { opacity:.55; }
   footer { margin-top:2rem; font-size:.78rem; color:var(--sub); text-align:center; }
 </style>
 </head>
@@ -123,5 +127,63 @@
   </footer>
 
 </div>
+<script>
+/* Lokale afhandeling: knop getikt -> kaart meteen inklappen, tot de volgende run het item echt opruimt.
+   localStorage onthoudt per item-id wat David al gemeld heeft; ids die niet meer op de pagina staan
+   worden opgeruimd. Dit script werkt zonder aanpassing: het leest de item-ids uit de knop-links.
+   NIET strippen bij het bouwen van het dashboard. */
+(function(){
+  var KEY="pa_lokaal", mem={};
+  try{ mem=JSON.parse(localStorage.getItem(KEY)||"{}"); }catch(e){}
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(mem)); }catch(e){} }
+  var cards=[].filter.call(document.querySelectorAll(".card"), function(c){ return c.querySelector(".acties"); });
+  cards.forEach(function(c){
+    var a=c.querySelector('.acties a'); if(!a) return;
+    var m=decodeURIComponent(a.getAttribute("href")||"").match(/PA (?:afgerond|snooze|parkeer): (\S+)/);
+    if(m) c.setAttribute("data-item-id", m[1]);
+  });
+  var opPagina={};
+  cards.forEach(function(c){ var id=c.getAttribute("data-item-id"); if(id) opPagina[id]=1; });
+  Object.keys(mem).forEach(function(id){ if(!opPagina[id]) delete mem[id]; });
+  save();
+  var LABELS={afgerond:"✓ Gemeld als afgerond", snooze:"💤 Snooze gemeld", parkeer:"⏸ Parkeren gemeld"};
+  function render(){
+    cards.forEach(function(c){
+      var id=c.getAttribute("data-item-id"); if(!id) return;
+      var st=mem[id], stub=c.querySelector(".lokaal-stub");
+      [].forEach.call(c.children, function(el){
+        if(el.className.indexOf("lokaal-stub")<0) el.style.display = st ? "none" : "";
+      });
+      if(st){
+        if(!stub){
+          stub=document.createElement("div"); stub.className="lokaal-stub";
+          stub.innerHTML='<span></span><a href="#">ongedaan maken</a>';
+          stub.querySelector("a").addEventListener("click", function(ev){
+            ev.preventDefault(); delete mem[id]; save(); render();
+          });
+          c.appendChild(stub);
+        }
+        stub.querySelector("span").textContent=(LABELS[st]||st)+" — verdwijnt bij de volgende verversing";
+        stub.style.display=""; c.className+=(c.className.indexOf("lokaal-af")<0?" lokaal-af":"");
+      } else if(stub){
+        stub.style.display="none"; c.className=c.className.replace(/ ?lokaal-af/,"");
+      }
+    });
+  }
+  cards.forEach(function(c){
+    [].forEach.call(c.querySelectorAll(".acties a"), function(a){
+      var href=decodeURIComponent(a.getAttribute("href")||""), type=null;
+      if(href.indexOf("PA afgerond:")>-1) type="afgerond";
+      else if(href.indexOf("PA snooze:")>-1) type="snooze";
+      else if(href.indexOf("PA parkeer:")>-1) type="parkeer";
+      if(!type) return;
+      a.addEventListener("click", function(){
+        setTimeout(function(){ mem[c.getAttribute("data-item-id")]=type; save(); render(); }, 400);
+      });
+    });
+  });
+  render();
+})();
+</script>
 </body>
 </html>
