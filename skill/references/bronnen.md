@@ -24,7 +24,7 @@ Per bron: hoe je hem uitleest, wat je eruit haalt, en wat je doet als hij niet b
 
 Zoek threads van de afgelopen 3 werkdagen plus alles met een ster. Gmail is Davids privé/overloop-kanaal: filter nieuwsbrieven en notificaties er hard uit; alleen mail van mensen telt.
 
-Zoek daarnaast expliciet naar **commandomails**: door David aan zichzelf gestuurde mails met onderwerp dat begint met `PA afgerond:` of `PA parkeer:` (afkomstig van de dashboardknoppen). Verwerk ze — status bijwerken, leerlus starten bij afgerond (zie `references/leren.md`) — en houd ze buiten de prioriteitenlijst.
+Zoek daarnaast expliciet naar **commandomails**: door David aan zichzelf gestuurde mails met onderwerp dat begint met `PA afgerond:`, `PA snooze:` of `PA parkeer:` (afkomstig van de dashboardknoppen). Lees ook de body — daar staat Davids toelichting (afgerond), de snooze-termijn of de parkeer-reden. Verwerk ze — status bijwerken, leerlus starten bij afgerond (zie `references/leren.md`) — en houd ze buiten de prioriteitenlijst.
 
 ## Chrome-bronnen (Urban, WhatsApp, Google-agenda)
 
